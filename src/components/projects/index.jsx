@@ -1,6 +1,6 @@
 "use client";
-import ProjectLayout from "./projectLayout";
 import { motion } from "framer-motion";
+import ProjectLayout from "./ProjectLayout";
 
 const container = {
   hidden: {
