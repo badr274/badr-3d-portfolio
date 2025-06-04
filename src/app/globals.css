@@ -1,21 +1,40 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer utilities {
+  .pause {
+    animation-play-state: paused;
+  }
+}
+
+@layer base {
+  :root {
+    --background: rgb(27 27 27);
+    --foreground: rgb(225 225 225);
+    --muted: rgb(115 115 115);
+    --accent: rgb(254 254 91);
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --shadow-glass-inset: inset 0 17px 5px -9px rgba(254, 254, 91, 0.05);
+  --shadow-glass-sm: 5px 5px 20px 0px rgba(254, 254, 91, 0.3);
+  --animate-spin-slow: spin 40s linear infinite;
+  --animate-spin-slow-reverse: spin-reverse 40s linear infinite;
+  --breakpoint-xs: 480px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: rgb(27 27 27);
+    --foreground: rgb(225 225 225);
+    --muted: rgb(115 115 115);
+    --accent: rgb(254 254 91);
   }
 }
 
@@ -23,4 +42,50 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.custom-bg {
+  @apply bg-background/20 border border-accent/30  backdrop-blur-[6px] shadow-glass-inset hover:shadow-glass-sm;
+}
+
+.firefly-radial {
+  background-image: radial-gradient(
+    50% 50% at 50%,
+    rgba(253, 255, 80, 0.5) 0%,
+    rgba(217, 217, 217, 0) 100%
+  );
+}
+
+@keyframes spin-reverse {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    -moz-transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes move {
+  0% {
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(100px, 100px);
+    -moz-transform: translate(100px, 100px);
+    -ms-transform: translate(100px, 100px);
+    -o-transform: translate(100px, 100px);
+    transform: translate(100px, 100px);
+  }
 }
